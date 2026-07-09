@@ -30,3 +30,10 @@ def quote_metrics(bid: float, ask: float, notional: float | None = None) -> Quot
     rt = spread
     rt_n = (spread / mid) * notional if notional is not None and mid else None
     return QuoteMetrics(bid, ask, mid, spread, bps, rt, rt_n)
+
+
+def mid_price(bid: float, ask: float) -> float:
+    """Return mid price for a bid/ask pair."""
+    if bid <= 0 or ask <= 0 or ask < bid:
+        raise ValueError("invalid bid/ask")
+    return (bid + ask) / 2.0
