@@ -1,5 +1,7 @@
 # fx-spread-lab
 
+![status](https://img.shields.io/badge/status-active-brightgreen) ![python](https://img.shields.io/badge/python-3.10%2B-blue) ![license](https://img.shields.io/badge/license-MIT-lightgrey)
+
 Compute **mid**, **spread bps**, and **round-trip cost** from bid/ask quotes. Educational microstructure mini-lab.
 
 ## CLI
