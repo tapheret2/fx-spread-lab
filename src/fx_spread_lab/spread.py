@@ -37,3 +37,11 @@ def mid_price(bid: float, ask: float) -> float:
     if bid <= 0 or ask <= 0 or ask < bid:
         raise ValueError("invalid bid/ask")
     return (bid + ask) / 2.0
+
+
+def spread_bps(bid: float, ask: float) -> float:
+    """Bid-ask spread in basis points of mid."""
+    mid = (bid + ask) / 2.0
+    if mid <= 0 or ask < bid:
+        raise ValueError("invalid bid/ask")
+    return (ask - bid) / mid * 10000.0
