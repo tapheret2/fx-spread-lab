@@ -45,3 +45,21 @@ def spread_bps(bid: float, ask: float) -> float:
     if mid <= 0 or ask < bid:
         raise ValueError("invalid bid/ask")
     return (ask - bid) / mid * 10000.0
+
+
+def half_spread(bid: float, ask: float) -> float:
+    """One-way cost ≈ half the full bid-ask spread."""
+    if bid <= 0 or ask <= 0 or ask < bid:
+        raise ValueError("invalid bid/ask")
+    return (ask - bid) / 2.0
+
+
+def effective_mid_slippage(bid: float, ask: float, side: str = "buy") -> float:
+    """Signed slip from mid: + for buy (pay ask), - for sell (hit bid)."""
+    m = mid_price(bid, ask)
+    side = side.lower()
+    if side == "buy":
+        return ask - m
+    if side == "sell":
+        return bid - m
+    raise ValueError("side must be buy or sell")
