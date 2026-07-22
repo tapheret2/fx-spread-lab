@@ -63,3 +63,16 @@ def effective_mid_slippage(bid: float, ask: float, side: str = "buy") -> float:
     if side == "sell":
         return bid - m
     raise ValueError("side must be buy or sell")
+
+def pips(diff: float, pip_size: float = 0.0001) -> float:
+    """Convert a price difference into pips."""
+    if pip_size <= 0:
+        raise ValueError("pip_size must be > 0")
+    return float(diff) / float(pip_size)
+
+
+def cost_bps(spread: float, mid: float) -> float:
+    """Round-trip spread cost in basis points of mid."""
+    if mid <= 0:
+        raise ValueError("mid must be > 0")
+    return 10000.0 * float(spread) / float(mid)
